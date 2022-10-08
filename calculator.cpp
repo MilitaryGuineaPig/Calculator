@@ -1,7 +1,8 @@
 #include "calculator.h"
 #include "./ui_calculator.h"
 
-double firstNum;
+double firstNum,secondNum;
+double resNum=0;
 bool a = false;
 
 Calculator::Calculator(QWidget *parent)
@@ -33,18 +34,15 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->Subtrat,SIGNAL(released()),this,SLOT(operations()));
 
     connect(ui->Equals,SIGNAL(released()),this,SLOT(on_Equals_released()));
-
-    ui->Add->setCheckable(true);
-    ui->Divide->setCheckable(true);
-    ui->Multiply->setCheckable(true);
-    ui->Subtrat->setCheckable(true);
+    //ui->Add->setCheckable(true);
+    //ui->Divide->setCheckable(true);
+    //ui->Multiply->setCheckable(true);
+    //ui->Subtrat->setCheckable(true);
 }
 Calculator::~Calculator(){
     delete ui;
 }
 void Calculator::ZeroPressed(){
-    QPushButton *button = (QPushButton *)sender();
-    double calcVal ;
     QString newVal;
     QString check = ui->Display->text();
     bool checkL = true;
@@ -69,9 +67,8 @@ void Calculator::ZeroPressed(){
             checkI = false;
         }
         else if (ui->Display->text() != "0" && checkI){
-            calcVal = ui->Display->text().toDouble() + button->text().toDouble();
-            newVal = QString::number(calcVal,'g',15) + "0" ;
-            ui->Display->setText("PERVOE");
+            newVal = ui->Display->text() + "0" ;
+            ui->Display->setText(newVal);
             ui->Clear->setText("C");
             checkI = true;
         }
@@ -141,8 +138,9 @@ void Calculator::on_Clear_released(){
         ui->Display->setText(QString::number(calcVal));
     }
 }
+
 void Calculator::on_Equals_released(){
-    double calcVal,secondNum;
+    double calcVal;
     QString newNum;
     secondNum = ui->Display->text().toDouble();
 
@@ -171,11 +169,12 @@ void Calculator::on_Equals_released(){
         ui->Subtrat->setChecked(false);
     }
 }
+
 void Calculator::operations(){
     QPushButton *button = (QPushButton *)sender();
-
     firstNum = ui->Display->text().toDouble();
 
     button->setChecked(true);
+
     a = true;
 }

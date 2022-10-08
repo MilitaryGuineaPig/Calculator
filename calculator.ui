@@ -35,7 +35,7 @@
     <property name="font">
      <font>
       <family>Segoe Print</family>
-      <pointsize>30</pointsize>
+      <pointsize>24</pointsize>
       <bold>true</bold>
      </font>
     </property>
@@ -482,7 +482,7 @@ text-align: left;
 }</string>
     </property>
     <property name="text">
-     <string>0</string>
+     <string>  0</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btt3">
