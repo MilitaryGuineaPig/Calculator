@@ -3,7 +3,7 @@
 
 double firstNum,secondNum;
 double resNum=0;
-bool a = false;
+bool Check = false;
 
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent)
@@ -34,10 +34,10 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->Subtrat,SIGNAL(released()),this,SLOT(operations()));
 
     connect(ui->Equals,SIGNAL(released()),this,SLOT(on_Equals_released()));
-    //ui->Add->setCheckable(true);
-    //ui->Divide->setCheckable(true);
-    //ui->Multiply->setCheckable(true);
-    //ui->Subtrat->setCheckable(true);
+    ui->Add->setCheckable(true);
+    ui->Divide->setCheckable(true);
+    ui->Multiply->setCheckable(true);
+    ui->Subtrat->setCheckable(true);
 }
 Calculator::~Calculator(){
     delete ui;
@@ -47,9 +47,9 @@ void Calculator::ZeroPressed(){
     QString check = ui->Display->text();
     bool checkL = true;
     bool checkI = true;
-    if (a){
+    if (Check){
         ui->Display->setText("");
-        a = false;
+        Check = false;
     }
         if (ui->Display->text() == "0"){}
         else if (check.endsWith(QChar('.'))){
@@ -74,9 +74,9 @@ void Calculator::ZeroPressed(){
         }
 }
 void Calculator::NumPressed(){
-    if (a){
+    if (Check){
         ui->Display->setText("");
-        a = false;
+        Check = false;
     }
     QPushButton *button = (QPushButton *)sender();
     double calcVal ;
@@ -176,5 +176,5 @@ void Calculator::operations(){
 
     button->setChecked(true);
 
-    a = true;
+    Check = true;
 }
